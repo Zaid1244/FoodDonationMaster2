@@ -6,9 +6,9 @@ import cors from "cors";
 dotenv.config();
 
 
-const privateKeys = process.env.PRIVATE_KEY? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"): undefined;
+const privateKeys = process.env.PRIVATE_KEY? process.env.PRIVATE_KEY.replace(/\\n/g, "\n"): undefined;
 
-if (!privateKey) {
+if (!privateKeys ) {
   console.error("❌ FIREBASE_PRIVATE_KEY is missing!");
 }
 
