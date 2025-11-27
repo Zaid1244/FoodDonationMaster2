@@ -24,8 +24,6 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-export default db;
-
 import bp from "body-parser"
 import ph from "password-hash"
 import uniqId from "uniqid"
@@ -587,9 +585,6 @@ app.get("/logout", (req, res) => {
   res.render("intro");
 });
 
-app.get("/", (req, res) => {
-  res.send("Server working");
-});
 
 
 const PORT = process.env.PORT || 120000;
