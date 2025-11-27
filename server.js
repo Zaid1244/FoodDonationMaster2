@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const serviceAccount = {
-  port: process.env.PORT,
   type: process.env.TYPE,
   project_id: process.env.PROJECT_ID,
   private_key_id: process.env.PRIVATE_KEY_ID,
@@ -588,6 +587,8 @@ app.get("/logout", (req, res) => {
   res.render("intro");
 });
 
-app.listen(3000, () => {
-  console.log("Server runs on port 3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
