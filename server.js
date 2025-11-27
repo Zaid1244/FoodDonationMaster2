@@ -587,7 +587,12 @@ app.get("/logout", (req, res) => {
   res.render("intro");
 });
 
-const PORT = process.env.PORT || 10000;
+app.get("/", (req, res) => {
+  res.send("Server working");
+});
+
+
+const PORT = process.env.PORT || 120000;
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
