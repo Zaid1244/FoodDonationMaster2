@@ -2,13 +2,21 @@ import {initializeApp, cert } from "firebase-admin/app"
 import {getFirestore} from "firebase-admin/firestore"
 import admin from "firebase-admin";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
+
+
+const privateKeys = process.env.PRIVATE_KEY? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"): undefined;
+
+if (!privateKey) {
+  console.error("❌ FIREBASE_PRIVATE_KEY is missing!");
+}
 
 const serviceAccount = {
   type: process.env.TYPE,
   project_id: process.env.PROJECT_ID,
   private_key_id: process.env.PRIVATE_KEY_ID,
-  private_key: (process.env.PRIVATE_KEY || "").replace(/\\n/g, "\n"), 
+  private_key: privateKeys,
   client_email: process.env.CLIENT_EMAIL,
   client_id: process.env.CLIENT_ID,
   auth_uri: process.env.AUTH_URI,
@@ -31,6 +39,8 @@ import session from "express-session"
 import express from "express"
 const app = express();
 app.use(express.static('public'));
+app.use(express.json());
+app.use(cors());
 
 app.set("view engine", "ejs");
 app.use(bp.urlencoded({ extended: true }));
